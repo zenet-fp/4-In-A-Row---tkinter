@@ -34,12 +34,6 @@ class ConnectFour:
                                             font=("playfair display", 12, " bold")
                                           )
 
-
-        self.error_label2 = tkinter.Label(self.window, text="ERROR There's already a piece there", fg="green",
-                                        bg="black", bd=3.5,
-                                        font=("playfair display", 15, " bold")
-                                        )
-
         self.welcome_message = tkinter.Label(self.window, text="Four In A Row", fg="green" , bg="black" ,
                                     font=("playfair display", 35, " bold"), pady=10, padx=10)
 
@@ -51,7 +45,6 @@ class ConnectFour:
         self.win_message = tkinter.Label(self.window, text=f"{self.winner} Is The Winner!", fg="green", bg="black",
                                         font=("playfair display", 15, " bold"), height=3, padx=5
                                         )
-
 
 
 
@@ -88,56 +81,6 @@ class ConnectFour:
             self.error_label1.grid(row=1, column=0, pady=15, columnspan=5, sticky="nsew")
 
 
-#    def place_piece(self, rw, col):
-#        for x in range(6):
-#            if self.board[x - 1][col] != " ":
-#                self.board[x][col].config(bg=f"{self.player_piece_gui}")
-
-
-#            else:
-#                self.board[x][col].config(bg=f"{self.player_piece_gui}")
-
-
-#    def place(self, rw, col):
-#        pieces = 0
-#        for x in range(6):
-#            if self.board[x - 1][col] != " ":
-#                pieces += 1
-#                self.board[rw - pieces][col].config(bg=f"{self.player_piece_gui}")
-#
-#            else:
-#                self.board.config(bg=f"{self.player_piece_gui}")
-
-    # op = \
-    #        0    1    2    3    4    5    6
-    #    [
-    # 0    [" ", " ", " ", " ", " ", " ", " "],
-    # 1    [" ", " ", " ", " ", " ", " ", " "],
-    # 2    [" ", " ", " ", " ", " ", " ", " "],
-    # 3    [" ", " ", " ", " ", " ", " ", " "],
-    # 4    [" ", " ", " ", " ", " ", " ", " "],
-    # 5    [" ", " ", " ", " ", " ", " ", " "],
-    #]
-
-    # op[][]
-    # the first bracket would contain the numbers on the left
-    # and the second bracket would contain the number on the top
-
-    def place_player_piece1(self, rw, col):
-        pieces = 0
-
-        for x in range(6+1):
-            if self.board[x - 1][col] != " ": # there are pieces below
-                pieces += 1
-
-                cs = rw - pieces
-                self.buttons[cs][col].config(bg=f"{self.player_piece_gui}")
-
-
-            else:
-                self.buttons[rw + pieces][col].config(bg=f"{self.player_piece_gui}")
-
-
     def place_player_piece(self, rw, col):
         for row in range(5, -1, -1):
             if self.board[row][col] == " ":
@@ -145,14 +88,10 @@ class ConnectFour:
 
                 self.buttons[row][col].config(bg=f"{self.player_piece_gui}")
                 self.decide_winner()
+                
                 if not self.winner:
-
                     self.place_ai_piece()
-
                 return
-
-
-
 
     def place_ai_piece(self):
         ai_piece = "red" if self.player_piece_gui == "blue" else "blue"
@@ -163,17 +102,13 @@ class ConnectFour:
             for row in range(5, -1, -1):
 
                 if self.board[row][random_column] == " ":
-
                     self.board[row][random_column] = self.ai_piece_gui
-
                     self.buttons[row][random_column].config(bg=f"{self.ai_piece_gui}")
-
+                    
                     print(f"{self.board[row][random_column]}")
 
                     self.decide_winner()
                     self.ai_placed = True
-
-
                     return
 
 
@@ -192,7 +127,6 @@ class ConnectFour:
                         self.winner = "AI"
                         self.ai_score += 1
 
-                    #self.winner = "Player" if self.board[row][col] == a else "AI"
 
                     self.win_message.config(text=f"{self.winner} is the winner!")
                     self.win_message.grid(row=1, column=1, pady=10)
@@ -212,7 +146,6 @@ class ConnectFour:
                         self.winner = "AI"
                         self.ai_score += 1
 
-                    #self.winner = "Player" if self.board[row][col] == a else "AI"
 
                     self.win_message.config(text=f"{self.winner} is the winner!")
                     self.win_message.grid(row=1, column=1, pady=10)
@@ -233,8 +166,7 @@ class ConnectFour:
                         else:
                             self.winner = "AI"
                             self.ai_score += 1
-                        #self.winner = "Player" if self.board[row][col] == a else "AI"
-
+           
                         self.win_message.config(text=f"{self.winner} is the winner!")
                         self.win_message.grid(row=1, column=1, pady=10)
                         self.freeze_game()
@@ -255,7 +187,6 @@ class ConnectFour:
                             self.winner = "AI"
 
 
-                        #self.winner = "Player" if self.board[row][col] == a else "AI"
 
                         self.win_message.config(text=f"{self.winner} is the winner!")
                         self.win_message.grid(row=1, column=1, pady=10)
@@ -263,11 +194,7 @@ class ConnectFour:
                         self.play_again()
                         return
 
-
-# effectively freeze the game after there's a winner
-    # when there's a winner, we disable the self.buttons which is where the player clicks
-        # and so with this func we can no longer click on the buttons
-
+    
     def freeze_game(self):
         self.game_finished = True
 
@@ -299,10 +226,6 @@ class ConnectFour:
 
                 main_grid.grid(row=row + 3, column=column + 2, sticky="nsew")
                 row_buttons.append(main_grid)
-
-            #for k in range(3):
-                #self.window.grid_rowconfigure(0, weight=1)
-                #self.window.grid_columnconfigure(0, weight=1)
 
             self.buttons.append(row_buttons)
 
@@ -348,47 +271,19 @@ class ConnectFour:
         self.player_piece_validation()
 
 
-
-#op = \
-#     # 0   #1   #2
-# 0   [" ", " ", " "],
-# 1   [" ", " ", " "],
-# 2   [" ", " ", " "]
- #   ]
-
-# op[][]
-# the first bracket would contain the numbers on the left
-# and the second bracket would contain the number on the top
-
-
     def run_window(self):
+        
         self.window.grid_rowconfigure(0, weight=2)
         self.window.grid_rowconfigure(1, weight=1)
         self.window.grid_rowconfigure(2, weight=1)
-        #self.window.grid_rowconfigure(3, weight=1)
-        #self.window.grid_rowconfigure(4, weight=1)
-
-        # the index is basically where in the grid does it affect, so index 1 would affect
-        # anything that's placed as grid at that place,
-        # so columnconfigure index 2 would affect those that are placed at the 2nd column
 
         self.window.grid_columnconfigure(0, weight=1)
         self.window.grid_columnconfigure(1, weight=1)
-     #   self.window.grid_columnconfigure(2, weight=1)
-     #   self.window.grid_columnconfigure(3, weight=1)
-     #   self.window.grid_columnconfigure(4, weight=1)
-
-
-
 
         self.player_piece_validation()
-
-
-
 
 
 if __name__ == '__main__':
     x_ = ConnectFour()
     x_.run_window()
-
     x_.window.mainloop()
