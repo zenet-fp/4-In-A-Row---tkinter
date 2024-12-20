@@ -20,6 +20,7 @@ class ConnectFour:
             [" ", " ", " ", " ", " ", " ", " "],
             [" ", " ", " ", " ", " ", " ", " "],
         ]
+        
         self.game_finished = False
         self.winner = None
         self.player_piece_gui = None
@@ -131,7 +132,7 @@ class ConnectFour:
                     self.win_message.config(text=f"{self.winner} is the winner!")
                     self.win_message.grid(row=1, column=1, pady=10)
                     self.freeze_game()
-                    self.play_again()
+             
                     return
 
 
@@ -150,8 +151,7 @@ class ConnectFour:
                     self.win_message.config(text=f"{self.winner} is the winner!")
                     self.win_message.grid(row=1, column=1, pady=10)
                     self.freeze_game()
-                    self.play_again()
-
+    
                     return
 
 
@@ -170,7 +170,7 @@ class ConnectFour:
                         self.win_message.config(text=f"{self.winner} is the winner!")
                         self.win_message.grid(row=1, column=1, pady=10)
                         self.freeze_game()
-                        self.play_again()
+                   
                         return
 
 
@@ -191,7 +191,7 @@ class ConnectFour:
                         self.win_message.config(text=f"{self.winner} is the winner!")
                         self.win_message.grid(row=1, column=1, pady=10)
                         self.freeze_game()
-                        self.play_again()
+      
                         return
 
     
@@ -229,46 +229,6 @@ class ConnectFour:
 
             self.buttons.append(row_buttons)
 
-
-    def leaderboard(self):
-        for widget in self.window.winfo_children():
-            widget.forget()
-
-
-        display_scores = tkinter.Label(self.window, text="LEADERBOARD", width=5, height=10, wraplength=400, justify="center", )
-        display_scores.grid(row=0, column=0, sticky="nsew")
-
-
-    def play_again(self):
-        play_again_button1 = tkinter.Button(self.window, text="Play Again", fg="green",
-                                    bg="black", bd=3.5,
-                                    font=("playfair display", 20, " bold"),
-                                    command=lambda: self.reset_game)
-
-        play_again_button1.grid(row=7, column=1, pady=10)
-
-
-    def reset_game(self):
-
-        self.winner = None
-        self.game_finished = False
-
-        self.board = [
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " "],
-        ]
-
-
-        for row_buttons in self.buttons:
-            for button in row_buttons:
-                button.config(bg="SystemButtonFace", state="normal")
-
-
-        self.player_piece_validation()
 
 
     def run_window(self):
