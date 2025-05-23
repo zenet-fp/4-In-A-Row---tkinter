@@ -5,7 +5,7 @@ This is a Python-based graphical version of Connect Four, built with Tkinter. Th
 Drop your colored discs into a 7-column, 6-row grid to be the first to align four of your own pieces either vertically, horizontally, or diagonally.
 
 # Features:
-Player vs AI gameplay (random AI, no minimax)
+Player vs AI gameplay 
 
 Tkinter-based graphical interface
 
