@@ -105,8 +105,6 @@ class ConnectFour:
                 if self.board[row][random_column] == " ":
                     self.board[row][random_column] = self.ai_piece_gui
                     self.buttons[row][random_column].config(bg=f"{self.ai_piece_gui}")
-                    
-                    print(f"{self.board[row][random_column]}")
 
                     self.decide_winner()
                     self.ai_placed = True
