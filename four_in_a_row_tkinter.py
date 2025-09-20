@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter
 import random
 
+# coded by Zenet
 
 class ConnectFour:
     def __init__(self):
@@ -99,9 +100,7 @@ class ConnectFour:
                 if self.board[row][random_column] == " ":
                     self.board[row][random_column] = self.ai_piece_gui
                     self.buttons[row][random_column].config(bg=f"{self.ai_piece_gui}")
-
-
-
+                    
                     self.decide_winner()
                     self.ai_placed = True
                     return
@@ -115,7 +114,6 @@ class ConnectFour:
                     self.set_winner(piece)
                     return
 
-
         for col in range(7):
             for row in range(3):
                 piece = self.board[row][col]
@@ -123,14 +121,12 @@ class ConnectFour:
                     self.set_winner(piece)
                     return
 
-
         for row in range(3):
             for col in range(4):
                 piece = self.board[row][col]
                 if piece != " " and all(self.board[row + i][col + i] == piece for i in range(4)):
                     self.set_winner(piece)
                     return
-
 
         for row in range(3, 6):
             for col in range(4):
@@ -207,8 +203,8 @@ class ConnectFour:
 
         self.player_piece_validation()
 
-
 if __name__ == '__main__':
     x_ = ConnectFour()
     x_.run_window()
     x_.window.mainloop()
+
