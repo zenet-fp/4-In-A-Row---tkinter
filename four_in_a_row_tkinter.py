@@ -73,6 +73,7 @@ class ConnectFour:
         if player_piece.lower() != " " and player_piece in ["red", "blue"]:
             self.player_piece_gui = player_piece
             self.gui_main_window()
+            # when the user chooses their colour, initialise the variable and transition to the game
 
         else:
             self.error_label1.grid(row=1, column=0, pady=15, columnspan=5, sticky="nsew")
@@ -134,6 +135,8 @@ class ConnectFour:
                 if piece != " " and all(self.board[row - i][col + i] == piece for i in range(4)):
                     self.set_winner(piece)
                     return
+                    
+        # check for four in a row in all directions
 
     def set_winner(self, winning_piece):
         if winning_piece == self.player_piece_gui:
@@ -161,13 +164,16 @@ class ConnectFour:
         )
         play_again_btn.grid(row=2, column=1, columnspan=1, pady=20)
 
+        # when either the player or AI wins, freeze the baord so no changes can be made
+
 
     def reset_game(self):
         self.board = [[" " for _ in range(7)] for _ in range(6)]
         self.winner = None
         self.game_finished = False
         self.gui_main_window()  
-
+        
+    
     def gui_main_window(self):
 
         for widget in self.window.grid_slaves():
@@ -207,4 +213,5 @@ if __name__ == '__main__':
     x_ = ConnectFour()
     x_.run_window()
     x_.window.mainloop()
+
 
